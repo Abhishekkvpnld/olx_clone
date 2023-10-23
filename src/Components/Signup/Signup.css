@@ -35,4 +35,13 @@
     justify-content: center;
     cursor: pointer;
   }
+
+  .loadingSignUp{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        width: 100%;
+        height: 130px;
+      }  
   

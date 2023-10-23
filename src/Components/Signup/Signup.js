@@ -5,12 +5,14 @@ import './Signup.css';
 import { FirebaseContext } from '../../store/Context';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import HashLoader from "react-spinners/HashLoader";
 
 export default function Signup() {
   const [userName, setuserName] = useState('');
   const [Email, setEmail] = useState('');
   const [PhoneNo, setPhoneNo] = useState('');
   const [Password, setPassword] = useState('');
+  const [Loading,setLoading]=useState(false)
 
   const { firebaseApp } = useContext(FirebaseContext);
   const navigate = useNavigate();
@@ -37,6 +39,13 @@ export default function Signup() {
       })
 
   }
+  const loading = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
+
+  }
 
   const handlePage = () => {
     navigate('/login');
@@ -44,6 +53,13 @@ export default function Signup() {
 
   return (
     <div>
+      {Loading ?
+      <div  className='loadingSignUp'>   
+<HashLoader color="#36d7b7" />
+      </div>
+    :""
+  }
+
       <div className="signupParentDiv">
         <img width="200px" height="200px" src={Logo} alt="Logo"></img>
         <form onSubmit={handleSubmit}>
@@ -96,7 +112,7 @@ export default function Signup() {
           />
           <br />
           <br />
-          <button>Signup</button>
+          <button onClick={loading}>Signup</button>
         </form>
         <a onClick={handlePage}>Login</a>
       </div>
