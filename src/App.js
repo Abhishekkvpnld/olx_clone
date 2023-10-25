@@ -4,6 +4,7 @@ import './App.css';
 import SignUp from './Pages/Signup'
 import Login from './Components/Login/Login';
 import Home from './Pages/Home';
+import Create from './Components/Create/Create'
 import { AuthContext, FirebaseContext } from './store/Context';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/create' element={<Create />} />
         </Routes>
       </Router>
     </div>

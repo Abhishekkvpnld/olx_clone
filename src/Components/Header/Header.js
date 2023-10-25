@@ -51,7 +51,7 @@ function Header() {
          window.confirm('Are you want to logout')
               navigate('/login')
           }}>Logout</span>}
-        <div className="sellMenu">
+        <div className="sellMenu" onClick={user ? ()=>{navigate('/create')} :()=>{ navigate('/login')}}>
       
           <SellButton></SellButton>
           <div className="sellMenuContent">
