@@ -11,7 +11,7 @@ import { getAuth,signOut } from "firebase/auth";
 
 
 function Header() {
-  const {user}=useContext(AuthContext)
+  const {User}=useContext(AuthContext)
   const {firebasApp}= useContext(FirebaseContext)
   const navigate =useNavigate()
   const auth = getAuth(firebasApp)
@@ -19,8 +19,8 @@ function Header() {
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName">
-          <OlxLogo></OlxLogo>
+        <div className="brandName" onClick={()=>navigate('/')}>
+          <OlxLogo ></OlxLogo>
         </div>
         <div className="placeSearch">
           <Search></Search>
@@ -43,15 +43,15 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-        <span onClick={user ? null : () =>navigate('/login')} className='login'> {user ? `Welcome ${user.displayName}` : "Login"}</span>
+        <span onClick={User ? null : () =>navigate('/login')} className='login'> {User ? `Welcome ${User.displayName}` : "Login"}</span>
           <hr />
         </div>
-        {user && <span className='logout' onClick={()=>{
+        {User && <span className='logout' onClick={()=>{
          signOut(auth)
          window.confirm('Are you want to logout')
               navigate('/login')
           }}>Logout</span>}
-        <div className="sellMenu" onClick={user ? ()=>{navigate('/create')} :()=>{ navigate('/login')}}>
+        <div className="sellMenu" onClick={User ? ()=>{navigate('/create')} :()=>{ navigate('/login')}}>
       
           <SellButton></SellButton>
           <div className="sellMenuContent">

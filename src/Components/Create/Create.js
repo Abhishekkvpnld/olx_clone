@@ -1,10 +1,12 @@
 import React, { Fragment,useState,useContext } from 'react';
+import {useNavigate} from 'react-router-dom'
 import './Create.css';
 import Header from '../Header/Header';
-import {AuthContext,FirebaseContext} from '../../store/Context'
+import {FirebaseContext} from '../../store/Context'
 import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 import {getFirestore, collection, addDoc} from 'firebase/firestore'
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
+
 
 const Create = () => {
 
@@ -13,20 +15,17 @@ const [Category,setCategory]=useState('')
 const [Price,setPrice]= useState('')
 const [Image,setImage]= useState('')
 const storage =getStorage()
+const Navigate =useNavigate()
 
 const { firebaseApp } = useContext(FirebaseContext);
 const firestore = getFirestore(firebaseApp);
-const {user} =useContext(AuthContext)
+
 const auth =getAuth(firebaseApp)
 
 const handleSubmit=(e)=>{
   e.preventDefault()
-  // firebase.storage().ref(`/Image/${Image.name}`).put(Image).then((ref)=>{
-  //   ref.getDownloadURl().then((url)=>{
-  //     console.log(url)
-  //   })
-  // })
   onAuthStateChanged(auth, (user) => {const userId =user.uid
+
 
   const storageRef= ref(storage, `Image/${Image.name}`)
   uploadBytes(storageRef,File).then((snapShot)=>{
@@ -39,7 +38,10 @@ const handleSubmit=(e)=>{
         url,
         userId,
         createdAt:new Date().toDateString()
+       }).then(()=>{
+        Navigate('/')
        })
+
     })
   })
 })
