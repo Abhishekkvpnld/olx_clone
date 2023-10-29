@@ -6,11 +6,11 @@ import firebaseApp from './Firebase/Config';
 import Post from './store/postContext';
 
 ReactDOM.render(
-    <FirebaseContext.Provider value={{firebaseApp}}>
+    <FirebaseContext.Provider value={{ firebaseApp }}>
         <Context>
-<Post>
-       <App />
- </Post>
+            <Post>
+                <App />
+            </Post>
         </Context>
     </FirebaseContext.Provider>
-, document.getElementById('root'));
+    , document.getElementById('root'));

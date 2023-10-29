@@ -43,7 +43,7 @@ function Login() {
 
       {Loading ?
       <div  className='loading'>
-     <DotLoader color="#36d7b7" />
+     <DotLoader color="#0000FF" />
       </div>
     :""
   }

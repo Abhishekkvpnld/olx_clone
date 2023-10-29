@@ -6,6 +6,7 @@ import {FirebaseContext} from '../../store/Context'
 import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 import {getFirestore, collection, addDoc} from 'firebase/firestore'
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const Create = () => {
@@ -13,7 +14,8 @@ const Create = () => {
 const [Name,setName]= useState('')
 const [Category,setCategory]=useState('')
 const [Price,setPrice]= useState('')
-const [Image,setImage]= useState('')
+const [Image,setImage]= useState(null)
+const [Loading, setLoading] = useState(false)
 const storage =getStorage()
 const Navigate =useNavigate()
 
@@ -22,14 +24,21 @@ const firestore = getFirestore(firebaseApp);
 
 const auth =getAuth(firebaseApp)
 
+const loading = () => {
+  setLoading(true)
+  setTimeout(() => {
+    setLoading(false)
+  }, 5000)
+
+}
+
 const handleSubmit=(e)=>{
   e.preventDefault()
+  loading()
   onAuthStateChanged(auth, (user) => {const userId =user.uid
-
-
   const storageRef= ref(storage, `Image/${Image.name}`)
-  uploadBytes(storageRef,File).then((snapShot)=>{
-    getDownloadURL(storageRef).then((url) => {
+  uploadBytes(storageRef,Image).then((snapShot)=>{
+    getDownloadURL(snapShot.ref).then((url) => {
       console.log(url);
       addDoc(collection(firestore, 'products'), {
         Name,
@@ -41,15 +50,23 @@ const handleSubmit=(e)=>{
        }).then(()=>{
         Navigate('/')
        })
-
     })
   })
 })
+
 }
+
 
   return (
     <Fragment>
       <Header />
+      {Loading ?
+      <div  className='loading'>
+     <ClipLoader color="#0000FF" />
+      </div>
+    : null
+  }
+
       <card>
         <div className="centerDiv">
           <form>
@@ -92,7 +109,7 @@ const handleSubmit=(e)=>{
             <br />
             <input type="file" required  onChange={(e)=>{setImage(e.target.files[0])}}/>
             <br />
-            <button className="uploadBtn" onClick={handleSubmit}>upload and Submit</button>
+            <button className="uploadBtn" onClick={ handleSubmit}>upload and Submit</button>
           </form>
         </div>
       </card>

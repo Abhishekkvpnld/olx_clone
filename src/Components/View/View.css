@@ -32,6 +32,7 @@
   border-radius: 6px;
   margin-bottom: 2em;
   width: 80%;
+  background-color: rgb(223, 227, 227);
 }
 
 .viewParentDiv .rightSection .contactDetails {
@@ -39,6 +40,7 @@
   padding: 6px;
   border-radius: 6px;
   width: 80%;
+  background-color: rgb(223, 227, 227);
 }
 
 .viewParentDiv .rightSection .contactDetails :first-child {

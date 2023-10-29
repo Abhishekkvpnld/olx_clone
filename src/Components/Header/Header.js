@@ -19,7 +19,7 @@ function Header() {
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName" onClick={()=>navigate('/')}>
+        <div className="brandName"  onClick={User ? () => navigate('/') : null}>
           <OlxLogo ></OlxLogo>
         </div>
         <div className="placeSearch">

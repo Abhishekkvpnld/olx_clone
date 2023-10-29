@@ -7,6 +7,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 6px;
+    display: flex;
+    align-items: center;
+    
   }
   
   .signupParentDiv .input {
@@ -23,6 +26,7 @@
     background-color: #002f34;
     color: whitesmoke;
     font-weight: 900;
+    border-radius: 8px;
   }
   .signupParentDiv button:hover {
     background-color: white;
@@ -45,3 +49,9 @@
         height: 130px;
       }  
   
+      .login{
+        margin-top: 5px;
+      }
+   .login:hover{
+    color: blue;
+   }

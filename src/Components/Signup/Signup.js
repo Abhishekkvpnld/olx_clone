@@ -20,6 +20,7 @@ export default function Signup() {
   const firestore = getFirestore(firebaseApp);
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     createUserWithEmailAndPassword(auth, Email, Password)
       .then((results) => {
@@ -55,7 +56,7 @@ export default function Signup() {
     <div>
       {Loading ?
       <div  className='loadingSignUp'>   
-<HashLoader color="#36d7b7" />
+<HashLoader color="#0000FF" />
       </div>
     :""
   }
@@ -113,8 +114,10 @@ export default function Signup() {
           <br />
           <br />
           <button onClick={loading}>Signup</button>
-        </form>
+          <div className='login'>
         <a onClick={handlePage}>Login</a>
+        </div>
+        </form>
       </div>
     </div>
   );
