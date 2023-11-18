@@ -151,9 +151,9 @@
   color: #002f34;
 }
 
-/* .sellMenu .sellMenuContent svg {
+.sellMenu .sellMenuContent svg {
   align-items: center;
-} */
+}
 .sellMenu .sellMenuContent span {
   margin-left: 5px;
 }

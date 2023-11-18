@@ -12,7 +12,14 @@ export default function Signup() {
   const [Email, setEmail] = useState('');
   const [PhoneNo, setPhoneNo] = useState('');
   const [Password, setPassword] = useState('');
-  const [Loading,setLoading]=useState(false)
+  const [Loading, setLoading] = useState(false)
+
+  const [focus, setFocus] = useState({
+    errName: false,
+    errPhone: false,
+    errPassword: false,
+    errEmail: false
+  })
 
   const { firebaseApp } = useContext(FirebaseContext);
   const navigate = useNavigate();
@@ -20,7 +27,7 @@ export default function Signup() {
   const firestore = getFirestore(firebaseApp);
 
   const handleSubmit = (e) => {
-    
+
     e.preventDefault();
     createUserWithEmailAndPassword(auth, Email, Password)
       .then((results) => {
@@ -30,7 +37,7 @@ export default function Signup() {
               id: results.user.uid,
               username: userName,
               phone: PhoneNo
-             })
+            })
               .then(() => {
                 navigate('/login');
               });
@@ -52,29 +59,36 @@ export default function Signup() {
     navigate('/login');
   }
 
+
+
   return (
     <div>
       {Loading ?
-      <div  className='loadingSignUp'>   
-<HashLoader color="#0000FF" />
-      </div>
-    :""
-  }
+        <div className='loadingSignUp'>
+          <HashLoader color="#000000" />
+        </div>
+        : ""
+      }
 
       <div className="signupParentDiv">
         <img width="200px" height="200px" src={Logo} alt="Logo"></img>
-        <form onSubmit={handleSubmit}>
+        <form id='form' onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
           <br />
           <input
             className="input"
+            pattern='^[A-Za-z0-9].{2,16}'
             type="text"
             value={userName}
             onChange={(e) => { setuserName(e.target.value) }}
             id="fname"
             name="name"
-            defaultValue="John"
+            onBlur={() => setFocus({ ...focus, errName: true })}
+            focus={focus.errName.toString()}
+            required
           />
+          <br />
+          <span>username should be 3-16 charecters</span>
           <br />
           <label htmlFor="fname">Email</label>
           <br />
@@ -85,8 +99,12 @@ export default function Signup() {
             onChange={(e) => { setEmail(e.target.value) }}
             id="fname"
             name="email"
-            defaultValue="John"
+            onBlur={() => setFocus({ ...focus, errEmail: true })}
+            focus={focus.errEmail.toString()}
+            required
           />
+          <br />
+          <span>Enter valid Email Id</span>
           <br />
           <label htmlFor="lname">Phone</label>
           <br />
@@ -97,26 +115,35 @@ export default function Signup() {
             onChange={(e) => { setPhoneNo(e.target.value) }}
             id="lname"
             name="phone"
-            defaultValue="Doe"
+            onBlur={() => setFocus({ ...focus, errPhone: true })}
+            focus={focus.errPhone.toString()}
+            required
           />
+          <br />
+          <span>Enter phone number</span>
           <br />
           <label htmlFor="lname">Password</label>
           <br />
           <input
             className="input"
+            pattern='(?=^.{8,16}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
             type="password"
             value={Password}
             onChange={(e) => { setPassword(e.target.value) }}
             id="lname"
             name="password"
-            defaultValue="Doe"
+            onBlur={() => setFocus({ ...focus, errPassword: true })}
+            focus={focus.errPassword.toString()}
+            required
           />
+          <br />
+          <span>Password must contain 8 charecters and <br />  include 1 uppercase 1 digit and 1 special charecters </span>
           <br />
           <br />
           <button onClick={loading}>Signup</button>
           <div className='login'>
-        <a onClick={handlePage}>Login</a>
-        </div>
+            <a onClick={handlePage}>Login</a>
+          </div>
         </form>
       </div>
     </div>

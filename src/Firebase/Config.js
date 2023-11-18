@@ -3,14 +3,14 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDvkFeRrBJbK77fSc2pe0c-XAFizvqcYgo",
-    authDomain: "olx-clone-3c83d.firebaseapp.com",
-    projectId: "olx-clone-3c83d",
-    storageBucket: "olx-clone-3c83d.appspot.com",
-    messagingSenderId: "849655757986",
-    appId: "1:849655757986:web:065fd534b7d6d79942abfb",
-    measurementId: "G-6Q9KDXJLTN"
-};
+    apiKey: "AIzaSyD496wamNYZ74oklYwt3kHqVXl4y2i8wh4",
+    authDomain: "olx-clone-8a347.firebaseapp.com",
+    projectId: "olx-clone-8a347",
+    storageBucket: "olx-clone-8a347.appspot.com",
+    messagingSenderId: "984793596613",
+    appId: "1:984793596613:web:2e53fcc09ad9741ad966ac",
+    measurementId: "G-FDS3SLVNQV"
+  };
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);

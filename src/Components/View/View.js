@@ -18,12 +18,13 @@ function View() {
     
   console.log(PostDetails);
     //  const {userId} = useContext(PostDetails)
-    const q = query(collection(firestore, "user"), where("id", "==", 'orQuStsW2oOVaCz9M2flt0UH7A82'));
+    const q = query(collection(firestore, "user"), where("id", "==", PostDetails.userId));
     const querySnapshot = await getDocs(q);
     const userDetailsData = [];
     querySnapshot.forEach((doc) => {
       userDetailsData.push(doc.data());
       setUserDetails(userDetailsData);
+      
     });
   }, [firestore])
 

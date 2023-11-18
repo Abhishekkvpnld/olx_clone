@@ -28,11 +28,11 @@ function Posts() {
       console.log(productData);
       setProducts(productData);
     };
-    
+
     fetchData();
   }, [fireStore]);
 
-  const handleViewPost = () => {
+  const handleViewPost = (data) => {
     navigate('/view')
   }
 
@@ -63,6 +63,7 @@ function Posts() {
               </div>
               <div className="date">
                 {setPostDetails(product.data)}
+                { console.log(product.data)}
                 <span>{product.data.createdAt} </span>
               </div>
             </div>
@@ -91,6 +92,74 @@ function Posts() {
             </div>
             <div className="date">
               <span>Tue oct 20 2023</span>
+            </div>
+          </div>
+
+          <div className="cardRecomend">
+            <div className="favorite">
+              <Heart></Heart>
+            </div>
+            <div className="image">
+              <img src="../../../Images/6c27cb67c759270fc2189b12cb13285b.jpg" alt="" />
+            </div>
+            <div className="content">
+              <p className="rate">&#x20B9; 4200000</p>
+              <span className="kilometer">Car</span>
+              <p className="name"> Mini Cooper</p>
+            </div>
+            <div className="date">
+              <span>Wed oct 25 2023</span>
+            </div>
+          </div>
+
+          <div className="cardRecomend">
+            <div className="favorite">
+              <Heart></Heart>
+            </div>
+            <div className="image">
+              <img src="../../../Images/bmw-g310r-left-side-view0.webp" alt="" />
+            </div>
+            <div className="content">
+              <p className="rate">&#x20B9; 200000</p>
+              <span className="kilometer">Two Wheeler</span>
+              <p className="name"> 2023 BMW G 310</p>
+            </div>
+            <div className="date">
+              <span>Fri Nov 10 2023</span>
+            </div>
+          </div>
+
+          <div className="cardRecomend">
+            <div className="favorite">
+              <Heart></Heart>
+            </div>
+            <div className="image">
+              <img src="../../../Images/Thar_1601615282959_1601615288316.webp" alt="" />
+            </div>
+            <div className="content">
+              <p className="rate">&#x20B9; 900000</p>
+              <span className="kilometer">Car</span>
+              <p className="name"> Mahindra Thar 2020 </p>
+            </div>
+            <div className="date">
+              <span>Tue Nov 09 2023</span>
+            </div>
+          </div>
+
+          <div className="cardRecomend">
+            <div className="favorite">
+              <Heart></Heart>
+            </div>
+            <div className="image">
+              <img src="../../../Images/4b2860d4827723f18c4c6e23f5856778.jpg" alt="" />
+            </div>
+            <div className="content">
+              <p className="rate">&#x20B9; 120000</p>
+              <span className="kilometer">Car</span>
+              <p className="name"> 2021 KTM Duke 200 </p>
+            </div>
+            <div className="date">
+              <span>Mon Nov 05 2023</span>
             </div>
           </div>
 
