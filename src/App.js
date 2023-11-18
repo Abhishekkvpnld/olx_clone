@@ -28,6 +28,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/olx_clone' element={<Home />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<Login />} />
             <Route path='/create' element={<Create />} />
